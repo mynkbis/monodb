@@ -34,12 +34,12 @@ Data in MongoDB has a flexible schema. Documents in the same collection. They do
 1. db.createCollection("movie"),     This will create the collection named movie.
 2. db.<COLLECTION_NAME>.drop(),   This will drop the selected collection.
 3. db.movie.insertone({name : "I am number four"}),  This will insert one record to the collection name "movie".
-    db.movie.insertmany([
-        {name : "I am number four", year: 1995, rating: 18+, genre: "sci-fi", language: "American English"},
-        {name : "Teens", year: 2001, rating: 18+, genre: "sci-fi", language: ["American English","Dubbed"]},
-        {name : "Stree", year: 2017, rating: 18+, genre: "horror", language: "Hindi"},
-        {name : "Chakrachal", year: 2000, rating: 18+, genre: "Documentry", language: "Regional"},
-        {name : "Shairat", year: 2017, rating: 18+, genre: "romantic", language: "Hindi"},
-        {name : "Pawn Star", year: 1992, rating: 18+, genre: "Fictional", language: ["American English","Dubbed"]}
+    db.movie.insertMany([
+        {name: "I am number four", year: 1995, rating: "18+", genre: "sci-fi", language: "American English"},
+        {name: "Teens", year: 2001, rating: "18+", genre: "sci-fi", language: ["American English","Dubbed"]},
+        {name: "Stree", year: 2017, rating: 18+, genre: "horror", language: "Hindi"},
+        {name: "Chakrachal", year: 2000, rating: "18+", genre: "Documentry", language: "Regional"},
+        {name: "Shairat", year: 2017, rating: "18+", genre: "romantic", language: "Hindi"},
+        {name: "Pawn Star", year: 1992, rating: "18+", genre: "Fictional", language: ["American English","Dubbed"]}
         ]);
        Here we are entering many records.
