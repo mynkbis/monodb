@@ -141,3 +141,92 @@ Data in MongoDB has a flexible schema. Documents in the same collection. They do
     > db.movie.createIndex({ item: 1 });
     > db.movie.dropIndex({ item: 1});
 
+
+
+
+# UBUNTO commands for mongoose and other.
+
+$ mkdir nodejs-express-mongodb   (created a folder)
+$ cd nodejs-express-mongodb  (switched to the folder)
+$ npm init (we initialize the Node.js App with a package.json file:)
+$ npm install express mongoose cors --save  (We need to install necessary modules: express, mongoose and cors.)
+
+# Setup Express web server
+
+In the root folder, create a new server.js file: and import the modules and parsers,
+then run $ node server.js 
+
+# Configure MongoDB database & Mongoose
+In the app folder, we will create a separate config folder for configuration with db.config.js file and import the module 
+module.exports = {
+    url: "mongodb://localhost:27017/Suryad"
+  };
+
+  # Define Mongoose
+  1. create app/models/index.js with the following code:
+
+  const dbConfig = require("../config/db.config.js");
+
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+
+const db = {};
+db.mongoose = mongoose;
+db.url = dbConfig.url;
+db.tutorials = require("./tutorial.model.js")(mongoose);
+
+module.exports = db;
+ 
+ 2. In models folder, create tutorial.model.js file like this
+ module.exports = mongoose => {
+  const Tutorial = mongoose.model(
+    "tutorial",
+    mongoose.Schema(
+      {
+        title: String,
+        description: String,
+        published: Boolean
+      },
+      { timestamps: true }
+    )
+  );
+
+  return Tutorial;
+};
+
+This Mongoose Model represents tutorials collection in MongoDB database. These fields will be generated automatically for each Tutorial document: _id, title, description, published, createdAt, updatedAt, __v.
+# Create the Controller
+
+Inside app/controllers folder, let’s create tutorial.controller.js with these CRUD functions:
+
+    create
+    findAll
+    findOne
+    update
+    delete
+    deleteAll
+    findAllPublished
+
+const db = require("../models");
+const Tutorial = db.tutorials;
+
+// Create and Save a new Tutorial
+exports.create = (req, res) => {
+  
+};
+
+// Retrieve all Tutorials from the database.
+exports.findAll = (req, res) => {
+  
+};
+
+# Define Routes
+
+When a client sends request for an endpoint using HTTP request (GET, POST, PUT, DELETE), we need to determine how the server will reponse by setting up the routes.
+
+These are our routes:
+
+    /api/tutorials: GET, POST, DELETE
+    /api/tutorials/:id: GET, PUT, DELETE
+    /api/tutorials/published: GET
+
