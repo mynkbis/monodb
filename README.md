@@ -34,7 +34,8 @@ Data in MongoDB has a flexible schema. Documents in the same collection. They do
 1. db.createCollection("movie"),     This will create the collection named movie.
 2. db.<COLLECTION_NAME>.drop(),   This will drop the selected collection.
 3. db.movie.insertone({name : "I am number four"}),db.movie.insertone({name : "I am number four"}),  This will insert one record to the collection name "movie".
-    db.movie.insertMany([
+   
+   db.movie.insertMany([
 		{
             First_Name: "Radhika",
 		    Last_Name: "Sharma",
